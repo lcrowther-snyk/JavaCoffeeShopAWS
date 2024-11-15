@@ -1,5 +1,6 @@
 package org.workshop.coffee.export;
 
+import static io.github.pixee.security.XMLInputFactorySecurity.hardenFactory;
 import javax.management.modelmbean.XMLParseException;
 import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLInputFactory;
@@ -14,7 +15,7 @@ import java.util.List;
 
 public class XMLParser {
 
-    XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
+    XMLInputFactory xmlInputFactory = hardenFactory(XMLInputFactory.newInstance());
 
     XMLEventReader reader;
     List<ExportOrder> orders = new ArrayList<>();
