@@ -1,5 +1,6 @@
 package org.workshop.coffee.controller;
 
+import io.github.pixee.security.Filenames;
 import org.workshop.coffee.domain.Person;
 import org.workshop.coffee.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,7 @@ public class UploadController {
     @PostMapping("/uploadimage")
     public String uploadImage(Model model, @RequestParam("image") MultipartFile file, Principal principal) throws IOException {
         //get filename from file
-        var filename = file.getOriginalFilename();
+        var filename = Filenames.toSimpleFileName(file.getOriginalFilename());
         //get person from model
         var person = getPerson(model, principal);
         //save file to server
